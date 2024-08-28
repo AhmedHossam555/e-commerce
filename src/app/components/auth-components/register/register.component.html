@@ -1,1 +1,33 @@
-<p>register works!</p>
+<div class="container mx-auto pt-4">
+    <h1 class="text-3xl  text-main">
+        Register Now:
+    </h1>
+    <form  [formGroup]="registerForm" (ngSubmit)="sendData()">
+        <div class="w-8/12 mx-auto my-8">
+            <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">name:</label>
+                <input type="text" id="name" formControlName="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email:</label>
+                <input type="email" id="email" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">password:</label>
+                <input type="password" id="password" formControlName="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="mb-6">
+                <label for="repassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">repassword:</label>
+                <input type="password" id="repassword" formControlName="rePassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="mb-6">
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">phone:</label>
+                <input type="tel" id="phone" formControlName="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="text-end">
+                <button type="submit" class="text-white bg-green-600  hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Register</button>
+            </div>
+        </div>
+    </form>
+  
+</div>
