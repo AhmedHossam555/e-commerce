@@ -15,10 +15,13 @@ export class LoginComponent {
   isLoading: boolean = false;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, Validators.required),
-    password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{3,9}$/)]),
+    password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{5,6}$/)]),
   })
   constructor(private _AuthService: AuthService, private _Router: Router){
 
+  }
+  onReset(){
+    this.loginForm.reset();
   }
   sendData(){
     this.isLoading = true;
@@ -28,7 +31,9 @@ export class LoginComponent {
         next: (resp) => {
           this.isLoading = false;
           if(resp.message === "success"){
+            window.localStorage.setItem('userToken', resp.token)
             this._Router.navigate(['/home']);
+            this._AuthService.userInformation()
           }
         },
         error: (err) => {
