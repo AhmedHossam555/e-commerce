@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Login, Register } from '../interface/auth';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Enviroment } from '../../Base/enviroment';
 import { jwtDecode } from "jwt-decode";
 @Injectable({
@@ -17,9 +17,9 @@ export class AuthService {
   login(formData: Login): Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/v1/auth/signin`, formData);
   }
-  decoded!:any;
+  userData: BehaviorSubject<any> = new BehaviorSubject(null);
   userInformation(){
-     this.decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
-     console.log(this.decoded)
+     let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
+     this.userData.next(decoded)
   }
 }

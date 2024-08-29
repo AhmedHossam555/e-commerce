@@ -27,10 +27,9 @@ export class LoginComponent {
     this.isLoading = true;
     if(this.loginForm.valid){
       this._AuthService.login(this.loginForm.value).subscribe({
-     
         next: (resp) => {
           this.isLoading = false;
-          if(resp.message === "success"){
+          if(resp.message == "success"){
             window.localStorage.setItem('userToken', resp.token)
             this._Router.navigate(['/home']);
             this._AuthService.userInformation()
