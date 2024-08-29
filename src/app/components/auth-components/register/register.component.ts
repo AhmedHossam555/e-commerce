@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,20 +11,38 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  constructor(private _auth: AuthService){
+  errMsg!:string;
+  isLoading: boolean = false;
+  constructor(private _auth: AuthService, private _Router: Router){
 
   }
   registerForm: FormGroup = new FormGroup({
-    name: new FormControl(null),
-    email: new FormControl(null),
-    password: new FormControl(null),
-    rePassword: new FormControl(null),
-    phone: new FormControl(null),
+    name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),
+    email: new FormControl(null, Validators.required),
+    password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{3,9}$/)]),
+    rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{3,9}$/)]),
+    phone: new FormControl(null, [Validators.required,Validators.pattern(/^01[025][0-9]{8}$/)]),
   })
   sendData(){
-    this._auth.register(this.registerForm.value).subscribe({
-      next: (response) =>{console.log(response)},
-    })
-    console.log(this.registerForm.value)
+    this.isLoading = true;
+    if(this.registerForm.valid){
+      this._auth.register(this.registerForm.value).subscribe({
+        next: (response) =>{
+          this.isLoading = false;
+          if(response.message === "success"){
+            this._Router.navigate(['/login'])
+          }
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.errMsg = err.error.message
+         }
+      
+      })
+    }else{
+      this.registerForm.markAllAsTouched();
+    }
+  
+    
   }
 }

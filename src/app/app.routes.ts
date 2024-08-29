@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/blank-components/home/home.component';
-import { BrandsComponent } from './components/blank-components/brands/brands.component';
-import { CartsComponent } from './components/blank-components/carts/carts.component';
-import { ProductsComponent } from './components/blank-components/products/products.component';
-import { CategoriesComponent } from './components/blank-components/categories/categories.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { BrandsComponent } from './components/pages/brands/brands.component';
+import { CartsComponent } from './components/pages/carts/carts.component';
+import { ProductsComponent } from './components/pages/products/products.component';
+import { CategoriesComponent } from './components/pages/categories/categories.component';
 import { LoginComponent } from './components/auth-components/login/login.component';
 import { RegisterComponent } from './components/auth-components/register/register.component';
-import { NotfoundComponent } from './components/blank-components/notfound/notfound.component';
+import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
