@@ -7,15 +7,16 @@ import { CategoriesComponent } from './components/pages/categories/categories.co
 import { LoginComponent } from './components/auth-components/login/login.component';
 import { RegisterComponent } from './components/auth-components/register/register.component';
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
+import { authGuard } from './shared/guard/auth.guard';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
-    {path:'home', component: HomeComponent},
-    {path:'brands',component: BrandsComponent },
-    {path:'cart', component: CartsComponent},
-    {path:'products', component: ProductsComponent},
-    {path:'categories', component:CategoriesComponent},
-    {path:'login', component: LoginComponent},
-    {path:'register', component: RegisterComponent},
+    {path:'home', component: HomeComponent,canActivate:[authGuard], title:'home' },
+    {path:'brands',component: BrandsComponent,canActivate:[authGuard], title:'brands' },
+    {path:'cart', component: CartsComponent,canActivate:[authGuard], title: 'cart'},
+    {path:'products', component: ProductsComponent,canActivate:[authGuard], title:'products'},
+    {path:'categories', component:CategoriesComponent,canActivate:[authGuard],title:'categories' },
+    {path:'login', component: LoginComponent, title:'login'},
+    {path:'register', component: RegisterComponent, title:'register'},
     {path:'**', component:NotfoundComponent}
 ];

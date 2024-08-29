@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { afterNextRender, afterRender, Component, Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-carts',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './carts.component.scss'
 })
 export class CartsComponent {
+  
 
 }

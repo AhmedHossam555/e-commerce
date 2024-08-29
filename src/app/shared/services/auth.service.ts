@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { afterNextRender, Injectable } from '@angular/core';
 import { Login, Register } from '../interface/auth';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -10,7 +10,11 @@ import { jwtDecode } from "jwt-decode";
 export class AuthService {
   
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) { 
+    afterNextRender(()=>{
+      this.userInformation();
+    })
+  }
   register(formData: Register): Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/v1/auth/signup`, formData);
   }
