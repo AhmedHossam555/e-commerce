@@ -1,1 +1,19 @@
-<p>categories works!</p>
+<div class="container mx-auto">
+    <div class="grid sm:grid-cols-2  md:grid-cols-3 rounded-lg  gap-2">
+        @for(product of categoriesList; track $index){
+                <div class="px-2 py-4 rounded-lg h-full product ">
+                    <div >
+                        <img [src]="product.image"  class="w-full rounded-lg" style="height: 250px" alt="">
+                        <h2 class="font-bold text-3xl text-main">
+                            {{product.name}}
+                        </h2>
+                    </div>
+                </div>
+        }@empty {
+            <div class="absolute top-1/2 left-1/2">
+                <span class="loader"></span>
+            </div>
+        }
+    </div>
+   
+</div>
