@@ -16,10 +16,10 @@ export class AuthService {
     })
   }
   register(formData: Register): Observable<any>{
-    return this._http.post(`${Enviroment.baseUrl}/v1/auth/signup`, formData);
+    return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/signup`, formData);
   }
   login(formData: Login): Observable<any>{
-    return this._http.post(`${Enviroment.baseUrl}/v1/auth/signin`, formData);
+    return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/signin`, formData);
   }
   userData: BehaviorSubject<any> = new BehaviorSubject(null);
   userInformation(){

@@ -1,1 +1,38 @@
-<p>products works!</p>
+
+
+<div class="container mx-auto">
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-2">
+        @for(product of productList; track $index){
+            <div class=" rounded ">
+                <div class="px-2 py-4  h-full product ">
+                    <div [routerLink]="['/productDetails',product.id]">
+                        <img [src]="product.imageCover"  class="w-full" alt="">
+                        <div class="h-20">
+                            <h3 class="text-main">
+                                {{product.title.split(' ').slice(0,5).join(' ')}}
+                            </h3>
+                            <p class="my-3">
+                                {{product.category.name}}
+                            </p>
+                        </div>
+                       
+                        <div class="flex justify-between items-center">
+                            <p>
+                                {{product.price}} EGP
+                            </p>
+                            <p>
+                               <i class="fas fa-star rating-color"></i> {{product.ratingsQuantity}}
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn bg-main my-2 text-white   cursor-pointer  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full "> <i class="fab fa-plus"></i> Add </button>
+                </div>
+            </div>
+        }@empty {
+            <div class="absolute top-1/2 left-1/2">
+                <span class="loader"></span>
+            </div>
+        }
+    </div>
+   
+</div>
