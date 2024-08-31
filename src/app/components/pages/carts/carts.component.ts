@@ -25,6 +25,9 @@ export class CartsComponent implements OnInit{
     })
   }
   updateProduct(id: string, count: number){
+    if(count==0){
+      this.removeItem(id);
+    }
     this._CartService.updateCartProduct(id,count).subscribe({
       next: (resp)=>{
         this.cartItems = resp.data;
