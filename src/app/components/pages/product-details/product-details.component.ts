@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { Details } from '../../../shared/interface/details';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CartService } from '../../../shared/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -38,7 +40,7 @@ export class ProductDetailsComponent {
   }
   id!: string;
   productDetails!:Details;
-  constructor(private _ActivateRoute: ActivatedRoute, private _ProductService: ProductService){
+  constructor(private _ActivateRoute: ActivatedRoute, private _ProductService: ProductService, private _CartService:CartService,private _toastrService: ToastrService){
     this._ActivateRoute.params.subscribe((para)=>{
       this.id = para['id'];
     })
@@ -47,6 +49,19 @@ export class ProductDetailsComponent {
   getProductDetails(){
     this._ProductService.getSpecificProduct(this.id).subscribe((resp)=>{
       this.productDetails = resp.data;
+    })
+  }
+  AddProductCart(){
+
+    this._CartService.addProductToCart(this.id).subscribe({
+      next: (rep)=>{
+        this._toastrService.success(rep.message,'',{
+          progressBar: true,
+          progressAnimation: 'increasing',
+          easeTime: 100,
+          timeOut: 3000,
+        })
+      }
     })
   }
 

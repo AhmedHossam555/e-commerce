@@ -1,7 +1,9 @@
+import { CartService } from './../../../shared/services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Root } from '../../../shared/interface/product';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -12,7 +14,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductsComponent implements OnInit{
   productList:Root[ ] = []
-  constructor(private _ProductService: ProductService){
+  constructor(private _ProductService: ProductService, private _CartService:CartService, private _toastrService: ToastrService){
 
   }
   
@@ -25,6 +27,19 @@ export class ProductsComponent implements OnInit{
         this.productList = resp.data;
       },
       error: () =>{}
+    })
+  }
+  AddProductCart(productId: string){
+
+    this._CartService.addProductToCart(productId).subscribe({
+      next: (rep)=>{
+        this._toastrService.success(rep.message,'',{
+          progressBar: true,
+          progressAnimation: 'increasing',
+          easeTime: 100,
+          timeOut: 3000,
+        })
+      }
     })
   }
 
