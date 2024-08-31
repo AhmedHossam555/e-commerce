@@ -1,5 +1,5 @@
 import { afterNextRender, Injectable } from '@angular/core';
-import { Login, Register } from '../interface/auth';
+import { Login, Register, ResetPassword } from '../interface/auth';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Enviroment } from '../../Base/enviroment';
@@ -25,5 +25,15 @@ export class AuthService {
   userInformation(){
      let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
      this.userData.next(decoded)
+  }
+
+  verifyEmail(emailData: any):Observable<any>{
+    return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/forgotPasswords`,emailData)
+  }
+  verifyResetCode(resetData:any): Observable<any>{
+    return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/verifyResetCode`,resetData)
+  }
+  ResetPassword(FormData: ResetPassword):Observable<any>{
+    return this._http.put(`${Enviroment.baseUrl}/api/v1/auth/verifyResetCode`,FormData)
   }
 }

@@ -10,3 +10,8 @@ export interface Register extends Login {
     rePassword:string,
     phone:string,
 }
+
+export interface ResetPassword {
+    email: string,
+    newPassword: string,
+}
