@@ -1,0 +1,26 @@
+
+<div class="container p-4">
+    
+    <div class="w-8/12 mx-auto">
+        <h1 class="text-main text-3xl font-medium mb-4">
+            Payment Now
+        </h1>
+        <form [formGroup]="cartForm" (ngSubmit)="sendData()">
+            <div class="mb-4">
+                <label for="details" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Details:</label>
+                <input type="text" id="details" formControlName="details" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="mb-4">
+                <label for="phone" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Phone:</label>
+                <input type="tel" id="phone" formControlName="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="mb-4">
+                <label for="city" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">City:</label>
+                <input type="text" id="details" formControlName="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            </div>
+            <div class="text-end">
+                <button type="submit" class="text-white bg-green-600 disabled:bg-green-400 cursor-pointer hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

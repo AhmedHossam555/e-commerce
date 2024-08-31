@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { afterNextRender, Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CartService } from '../../../shared/services/cart.service';
@@ -13,7 +13,14 @@ import { CartService } from '../../../shared/services/cart.service';
 export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
   cartNumber:any;
-  constructor(private _AuthService: AuthService, private _Router: Router, private _cartService: CartService){}
+  constructor(private _AuthService: AuthService, private _Router: Router, private _cartService: CartService){
+    afterNextRender(()=>{
+      this._cartService.getLoggedUserCart().subscribe((resp)=>{
+        this._cartService.cartItemNumber.next(resp.numOfCartItems)
+      })
+    })
+    
+  }
   ngOnInit(): void {
     this._cartService.cartItemNumber.subscribe({
       next: (resp)=>{this.cartNumber = resp}

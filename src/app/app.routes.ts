@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/auth-components/register/registe
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 import { authGuard } from './shared/guard/auth.guard';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
+import { CheckOutComponent } from './components/pages/check-out/check-out.component';
+import { AllOrdersComponent } from './components/pages/all-orders/all-orders.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
@@ -18,6 +20,9 @@ export const routes: Routes = [
     {path:'products', component: ProductsComponent,canActivate:[authGuard], title:'products'},
     {path: 'productDetails/:id',component: ProductDetailsComponent, canActivate:[authGuard], title:'productDetails'},
     {path:'categories', component:CategoriesComponent,canActivate:[authGuard],title:'categories' },
+    {path:'checkout', component:CheckOutComponent,canActivate:[authGuard],title:'checkout' },
+    {path:'allorders', component:AllOrdersComponent,canActivate:[authGuard],title:'allorders'},
+
     {path:'login', component: LoginComponent, title:'login'},
     {path:'register', component: RegisterComponent, title:'register'},
     {path:'**', component:NotfoundComponent}
