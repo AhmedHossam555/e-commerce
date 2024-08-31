@@ -1,43 +1,65 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit} from '@angular/core';
 import { Enviroment } from '../../Base/enviroment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
-  header:any = {
-    token: localStorage.getItem('userToken'),
-  }
+export class CartService implements OnInit {
 
-  constructor(private _http: HttpClient) { }
+  cartItemNumber = new BehaviorSubject(0)
+  constructor(private _http: HttpClient) {
+
+   }
+   ngOnInit(): void{
+    this.getLoggedUserCart().subscribe({
+      next: (resp)=>{
+        console.log("Hi")
+        this.cartItemNumber.next(resp.numOfCartItems)
+      }
+    })
+    
+   }
+  
+   
   addProductToCart(id:string):Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/api/v1/cart`,{
       productId: id,
     },{
-      headers: this.header,
+      headers:{
+        token: localStorage.getItem('userToken')!,
+      }  
     })
   }
   updateCartProduct(id:string, count: number):Observable<any>{
     return this._http.put(`${Enviroment.baseUrl}/api/v1/cart/${id}`,{
       count: count,
     },{
-      headers: this.header,
+      headers:{
+        token: localStorage.getItem('userToken')!,
+      }  
     })
   }
   getLoggedUserCart( ):Observable<any>{
     return this._http.get(`${Enviroment.baseUrl}/api/v1/cart`,{
-      headers: this.header,
+      headers:{
+        token: localStorage.getItem('userToken')!,
+      }  
     })
   }
   removeSpecificCartItem(id:string ):Observable<any>{
     return this._http.delete(`${Enviroment.baseUrl}/api/v1/cart/${id}`,{
-      headers: this.header,
+      headers:{
+        token: localStorage.getItem('userToken')!,
+      }  
     })
   }
   clearUserCart():Observable<any>{
     return this._http.delete(`${Enviroment.baseUrl}/api/v1/cart`,{
-      headers: this.header
+      headers:{
+        token: localStorage.getItem('userToken')!,
+      }  
     })
   }
 }

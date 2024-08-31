@@ -20,20 +20,22 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllProducts()
+    this.getAllProducts();
   }
   getAllProducts(){
     this._ProductService.getProducts().subscribe({
       next: (resp)=>{
         this.productList = resp.data;
       },
-      error: () =>{}
+      error: () =>{},
+    
     })
   }
   AddProductCart(productId: string){
 
     this._CartService.addProductToCart(productId).subscribe({
       next: (rep)=>{
+        this._CartService.cartItemNumber.next(rep.numOfCartItems)
         this._toastrService.success(rep.message,'',{
           progressBar: true,
           progressAnimation: 'increasing',

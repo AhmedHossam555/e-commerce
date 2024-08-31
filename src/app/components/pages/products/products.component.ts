@@ -15,9 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductsComponent implements OnInit{
   productList:Root[ ] = []
   constructor(private _ProductService: ProductService, private _CartService:CartService, private _toastrService: ToastrService){
-
   }
-  
   ngOnInit(): void {
     this.getAllProducts()
   }
@@ -33,6 +31,7 @@ export class ProductsComponent implements OnInit{
 
     this._CartService.addProductToCart(productId).subscribe({
       next: (rep)=>{
+        this._CartService.cartItemNumber.next(rep.numOfCartItems)
         this._toastrService.success(rep.message,'',{
           progressBar: true,
           progressAnimation: 'increasing',

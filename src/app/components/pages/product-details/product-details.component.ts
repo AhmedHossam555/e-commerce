@@ -55,6 +55,7 @@ export class ProductDetailsComponent {
 
     this._CartService.addProductToCart(this.id).subscribe({
       next: (rep)=>{
+        this._CartService.cartItemNumber.next(rep.numOfCartItems)
         this._toastrService.success(rep.message,'',{
           progressBar: true,
           progressAnimation: 'increasing',

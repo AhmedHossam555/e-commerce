@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
+import { CartService } from '../../../shared/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,12 @@ import { AuthService } from '../../../shared/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
-  constructor(private _AuthService: AuthService, private _Router: Router){}
+  cartNumber:any;
+  constructor(private _AuthService: AuthService, private _Router: Router, private _cartService: CartService){}
   ngOnInit(): void {
+    this._cartService.cartItemNumber.subscribe({
+      next: (resp)=>{this.cartNumber = resp}
+    })
     this._AuthService.userData.subscribe(()=>{
       if(this._AuthService.userData.getValue() == null){
         this.isLogin = false;
@@ -20,6 +25,7 @@ export class NavbarComponent implements OnInit {
         this.isLogin = true;
       }
     })
+ 
    
   }
   onLogOut(){

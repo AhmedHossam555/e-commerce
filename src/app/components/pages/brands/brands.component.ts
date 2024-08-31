@@ -19,7 +19,6 @@ export class BrandsComponent implements OnInit{
   getAllBrands(){
      this._brands.getAllBrands().subscribe((resp)=>{
       this.brandsList = resp.data;
-      console.log(resp.data)
      })
   }
 }
