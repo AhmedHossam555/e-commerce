@@ -11,9 +11,6 @@ import { authGuard } from './shared/guard/auth.guard';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 import { CheckOutComponent } from './components/pages/check-out/check-out.component';
 import { AllOrdersComponent } from './components/pages/all-orders/all-orders.component';
-import { VerfyEmailComponent } from './components/pages/forget-password/verfy-email/verfy-email.component';
-import { VerfyCodeComponent } from './components/pages/forget-password/verfy-code/verfy-code.component';
-import { ResetPasswordComponent } from './components/pages/forget-password/reset-password/reset-password.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
@@ -28,8 +25,6 @@ export const routes: Routes = [
 
     {path:'login', component: LoginComponent, title:'login'},
     {path:'register', component: RegisterComponent, title:'register'},
-    {path:'vemail', component: VerfyEmailComponent, title:'verfiy email'},
-    {path:'vcode', component: VerfyCodeComponent, title:'verfiy login'},
-    {path:'reset', component: ResetPasswordComponent, title:'Reset Password'},
+  
     {path:'**', component:NotfoundComponent}
 ];
