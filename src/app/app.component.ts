@@ -22,7 +22,6 @@ export class AppComponent  {
       this.getAllCartItems();
     }
   }
-  
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{
       this._CartService.cartItemNumber.next(resp.numOfCartItems)

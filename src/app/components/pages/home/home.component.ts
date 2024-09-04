@@ -21,7 +21,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProducts();
-    localStorage.setItem('currentPage',this._Router.url)
+    this.getAllCartItems();
+    localStorage.setItem('currentPage',this._Router.url);
+  }
+  getAllCartItems(){
+    this._CartService.getLoggedUserCart().subscribe((resp)=>{
+      this._CartService.cartItemNumber.next(resp.numOfCartItems)
+    })
   }
   getAllProducts(){
     this._ProductService.getProducts().subscribe({
