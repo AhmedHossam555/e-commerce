@@ -11,6 +11,9 @@ import { authGuard } from './shared/guard/auth.guard';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 import { CheckOutComponent } from './components/pages/check-out/check-out.component';
 import { AllOrdersComponent } from './components/pages/all-orders/all-orders.component';
+import { VerifyEmailComponent } from './components/auth-components/forget/verify-email/verify-email.component';
+import { VerifyCodeComponent } from './components/auth-components/forget/verify-code/verify-code.component';
+import { ResetPasswordComponent } from './components/auth-components/forget/reset-password/reset-password.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
@@ -22,9 +25,10 @@ export const routes: Routes = [
     {path:'categories', component:CategoriesComponent,canActivate:[authGuard],title:'categories' },
     {path:'checkout', component:CheckOutComponent,canActivate:[authGuard],title:'checkout' },
     {path:'allorders', component:AllOrdersComponent,canActivate:[authGuard],title:'allorders'},
-
+    {path:'vemail', component: VerifyEmailComponent,title:'verify email'},
+    {path:'vcode', component: VerifyCodeComponent,title:'verify code'},
+    {path:'rpassword',component: ResetPasswordComponent,title:'Reset Password'},
     {path:'login', component: LoginComponent, title:'login'},
     {path:'register', component: RegisterComponent, title:'register'},
-  
     {path:'**', component:NotfoundComponent}
 ];

@@ -1,6 +1,6 @@
 <div style="width: 98% " class="mx-auto">
   <h1 class="text-3xl my-1">Shop Popular Categories</h1>
-        <owl-carousel-o [options]="customOptions">
+        <owl-carousel-o [options]="customOptions" >
             @for ( categor of categoriesList; track $index) {
                 <ng-template carouselSlide [id]="categor.id">
                     <img style="height: 200px" [src]="categor.image"   [alt]="categor.title" [title]="categor.title">

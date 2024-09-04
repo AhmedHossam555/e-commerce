@@ -1,9 +1,10 @@
 import { CartService } from './../../../shared/services/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Root } from '../../../shared/interface/product';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-products',
@@ -14,10 +15,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductsComponent implements OnInit{
   productList:Root[ ] = []
-  constructor(private _ProductService: ProductService, private _CartService:CartService, private _toastrService: ToastrService){
+  constructor(private _ProductService: ProductService, private _CartService:CartService, private _toastrService: ToastrService,private _Router: Router){
   }
+  x = Inject(PLATFORM_ID)
   ngOnInit(): void {
     this.getAllProducts()
+    localStorage.setItem('currentPage',this._Router.url)
+  if(isPlatformBrowser(this.x)){
+    localStorage.setItem('currentPage',this._Router.url)
+  }
   }
   getAllProducts(){
     this._ProductService.getProducts().subscribe({

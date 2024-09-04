@@ -2,7 +2,7 @@
 import {  Component, OnInit} from '@angular/core';
 import { CartService } from '../../../shared/services/cart.service';
 import { Data, Product2 } from '../../../shared/interface/cart';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carts',
@@ -13,10 +13,11 @@ import { RouterLink } from '@angular/router';
 })
 export class CartsComponent implements OnInit{
   productList: Product2[] = [];
-  cartItems!: Data;
-  constructor(private _CartService: CartService){}
+  cartItems!: any ; //:Data
+  constructor(private _CartService: CartService, private _Router:Router){}
   ngOnInit(): void {
     this.getAllCartItems();
+    localStorage.setItem('currentPage',this._Router.url)
   }
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -24,6 +24,8 @@ export class MainSliderComponent {
     },
     nav: true
   }
+
+
 
 }
 

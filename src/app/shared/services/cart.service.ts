@@ -15,7 +15,6 @@ export class CartService implements OnInit {
    ngOnInit(): void{
     this.getLoggedUserCart().subscribe({
       next: (resp)=>{
-        console.log("Hi")
         this.cartItemNumber.next(resp.numOfCartItems)
       }
     })

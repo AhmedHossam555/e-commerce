@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { Details } from '../../../shared/interface/details';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from '../../../shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -40,7 +41,10 @@ export class ProductDetailsComponent {
   }
   id!: string;
   productDetails!:Details;
+
   constructor(private _ActivateRoute: ActivatedRoute, private _ProductService: ProductService, private _CartService:CartService,private _toastrService: ToastrService){
+  }
+  ngOnInit(): void {
     this._ActivateRoute.params.subscribe((para)=>{
       this.id = para['id'];
     })
