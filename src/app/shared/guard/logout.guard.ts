@@ -1,17 +1,19 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const logoutGuard: CanActivateFn = (route, state) => {
-  let x = Inject(PLATFORM_ID);
-  let _Router = Inject(Router);
+  let x = inject(PLATFORM_ID);
+  let _Router = inject(Router);
   if(isPlatformBrowser(x)){
     if(window.localStorage.getItem('userToken') != null){
-      _Router.navigate(localStorage.getItem('currentPage'));
-      return false
+      _Router.navigate([localStorage.getItem('currentPage')]);
+      return false;
     }else {
-      return true
+      return true;
     }
+  }else{
+    return true;
   }
-  return true;
+ 
 };

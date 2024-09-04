@@ -14,6 +14,7 @@ import { AllOrdersComponent } from './components/pages/all-orders/all-orders.com
 import { VerifyEmailComponent } from './components/auth-components/forget/verify-email/verify-email.component';
 import { VerifyCodeComponent } from './components/auth-components/forget/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './components/auth-components/forget/reset-password/reset-password.component';
+import { logoutGuard } from './shared/guard/logout.guard';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
@@ -28,7 +29,7 @@ export const routes: Routes = [
     {path:'vemail', component: VerifyEmailComponent,title:'verify email'},
     {path:'vcode', component: VerifyCodeComponent,title:'verify code'},
     {path:'rpassword',component: ResetPasswordComponent,title:'Reset Password'},
-    {path:'login', component: LoginComponent, title:'login'},
-    {path:'register', component: RegisterComponent, title:'register'},
+    {path:'login', component: LoginComponent, title:'login', canActivate:[logoutGuard]},
+    {path:'register', component: RegisterComponent, title:'register', canActivate:[logoutGuard]},
     {path:'**', component:NotfoundComponent}
 ];

@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
   constructor(private _AuthService: AuthService, private _Router: Router, private _cartService: CartService, private flowbiteService: FlowbitService){
   }
   ngOnInit(): void {
-   
     this.flowbiteService.loadFlowbite(flowbite => {
     });
   

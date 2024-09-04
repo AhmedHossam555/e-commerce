@@ -27,7 +27,6 @@ export class AuthService {
      let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
      this.userData.next(decoded)
   }
-
   verifyEmail(emailData: any):Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/forgotPasswords`,emailData)
   }

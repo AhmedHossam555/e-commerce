@@ -1,5 +1,5 @@
 import { CartService } from './../../../shared/services/cart.service';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Root } from '../../../shared/interface/product';
 import { Router, RouterLink } from '@angular/router';
@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit{
   productList:Root[ ] = []
   constructor(private _ProductService: ProductService, private _CartService:CartService, private _toastrService: ToastrService,private _Router: Router){
   }
-  x = Inject(PLATFORM_ID)
+  x = inject(PLATFORM_ID)
   ngOnInit(): void {
     this.getAllProducts()
     localStorage.setItem('currentPage',this._Router.url)
