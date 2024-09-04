@@ -7,7 +7,7 @@ export const logoutGuard: CanActivateFn = (route, state) => {
   let _Router = Inject(Router);
   if(isPlatformBrowser(x)){
     if(window.localStorage.getItem('userToken') != null){
-      _Router.navigate();
+      _Router.navigate(localStorage.getItem('currentPage'));
       return false
     }else {
       return true
