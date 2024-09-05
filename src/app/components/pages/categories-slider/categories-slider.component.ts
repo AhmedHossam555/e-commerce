@@ -11,6 +11,7 @@ import { CategoriesService } from '../../../shared/services/categories.service';
 export class CategoriesSliderComponent implements OnInit {
   
   customOptions: OwlOptions = {
+      rtl: true,
       loop: true,
       mouseDrag: true,
       touchDrag: true,

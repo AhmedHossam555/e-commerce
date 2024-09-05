@@ -7,7 +7,6 @@ import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../../shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { CurrencyPipe } from '@angular/common';
-import { OnsalePipe } from '../../../shared/pipe/onsale.pipe';
 import { FilterPipe } from '../../../shared/pipe/filter.pipe';
 import { FormsModule } from '@angular/forms';
 @Component({

@@ -4,12 +4,14 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { CartService } from '../../../shared/services/cart.service';
 import { FlowbitService } from '../../../shared/services/flowbit.service';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { MyTranslateService } from '../../../shared/services/my-translate.service';
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -17,7 +19,7 @@ export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
   cartNumber:any;
   x = inject(PLATFORM_ID);
-  constructor(private _AuthService: AuthService, private _Router: Router, private _cartService: CartService, private flowbiteService: FlowbitService){
+  constructor(private _AuthService: AuthService, private _Router: Router, private _cartService: CartService, private flowbiteService: FlowbitService,private _myTranslate: MyTranslateService){
   }
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite(flowbite => {
@@ -44,6 +46,9 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('userToken');
     this._Router.navigate(['/login']);
     this._AuthService.userData.next(null);
+  }
+  change(lang:string){
+    this._myTranslate.changelanguage(lang);
   }
 
 }

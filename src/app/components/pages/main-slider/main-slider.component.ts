@@ -10,6 +10,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class MainSliderComponent {
   customOptions: OwlOptions = {
+    rtl: true,
     loop: true,
     mouseDrag: false,
     touchDrag: false,

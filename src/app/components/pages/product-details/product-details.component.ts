@@ -16,6 +16,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class ProductDetailsComponent implements OnInit {
   customOptions: OwlOptions = {
+    rtl: true,
     loop: true,
     mouseDrag: false,
     touchDrag: false,
