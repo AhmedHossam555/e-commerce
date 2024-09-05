@@ -7,12 +7,14 @@ import {  provideHttpClient, withFetch, withInterceptors } from '@angular/common
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { headersInterceptor } from './shared/interceptor/headers.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { loadingInterceptor } from './shared/interceptor/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes,withViewTransitions()), provideClientHydration(),importProvidersFrom(RouterModule,BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),NgxSpinnerModule
   ),
-    provideHttpClient(withFetch(), withInterceptors([headersInterceptor]))
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor,loadingInterceptor]))
     
   ]
 };

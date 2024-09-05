@@ -4,11 +4,11 @@ import { NavbarComponent } from './components/pages/navbar/navbar.component';
 import { FooterComponent } from './components/pages/footer/footer.component';
 import { CartService } from './shared/services/cart.service';
 import { isPlatformBrowser } from '@angular/common';
-import { AuthService } from './shared/services/auth.service';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
