@@ -14,10 +14,6 @@ export class PaymentService {
     return this._http.post(`${Enviroment.baseUrl}/api/v1/orders/checkout-session/${id}?url=http://localhost:4200`,{
       shippingAddress: formData,
     },
-  {
-    headers: {
-      token: localStorage.getItem('userToken')!,
-    }
-  })
+  )
   }
 }

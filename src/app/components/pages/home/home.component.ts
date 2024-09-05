@@ -6,15 +6,20 @@ import { ProductService } from '../../../shared/services/product.service';
 import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../../shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { CurrencyPipe } from '@angular/common';
+import { OnsalePipe } from '../../../shared/pipe/onsale.pipe';
+import { FilterPipe } from '../../../shared/pipe/filter.pipe';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MainSliderComponent, RouterLink, CategoriesSliderComponent],
+  imports: [MainSliderComponent, RouterLink, CategoriesSliderComponent,CurrencyPipe, FilterPipe, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   productList:Root[ ] = []
+  searchData:string = ''
   constructor(private _ProductService: ProductService, private _CartService: CartService, private _toastrService: ToastrService, private _Router: Router){
 
   }

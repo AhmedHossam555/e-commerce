@@ -25,40 +25,20 @@ export class CartService implements OnInit {
   addProductToCart(id:string):Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/api/v1/cart`,{
       productId: id,
-    },{
-      headers:{
-        token: localStorage.getItem('userToken')!,
-      }  
-    })
+    },)
   }
   updateCartProduct(id:string, count: number):Observable<any>{
     return this._http.put(`${Enviroment.baseUrl}/api/v1/cart/${id}`,{
       count: count,
-    },{
-      headers:{
-        token: localStorage.getItem('userToken')!,
-      }  
-    })
+    },)
   }
   getLoggedUserCart( ):Observable<any>{
-    return this._http.get(`${Enviroment.baseUrl}/api/v1/cart`,{
-      headers:{
-        token: localStorage.getItem('userToken')!,
-      }  
-    })
+    return this._http.get(`${Enviroment.baseUrl}/api/v1/cart`,)
   }
   removeSpecificCartItem(id:string ):Observable<any>{
-    return this._http.delete(`${Enviroment.baseUrl}/api/v1/cart/${id}`,{
-      headers:{
-        token: localStorage.getItem('userToken')!,
-      }  
-    })
+    return this._http.delete(`${Enviroment.baseUrl}/api/v1/cart/${id}`,)
   }
   clearUserCart():Observable<any>{
-    return this._http.delete(`${Enviroment.baseUrl}/api/v1/cart`,{
-      headers:{
-        token: localStorage.getItem('userToken')!,
-      }  
-    })
+    return this._http.delete(`${Enviroment.baseUrl}/api/v1/cart`,)
   }
 }

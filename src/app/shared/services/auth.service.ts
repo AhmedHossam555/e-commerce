@@ -20,6 +20,7 @@ export class AuthService {
       if(localStorage.getItem('userToken') != null){
         this.userInformation()
       }
+     
     }
   }
   register(formData: Register): Observable<any>{

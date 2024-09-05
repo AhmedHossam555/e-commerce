@@ -1,8 +1,11 @@
 <app-main-slider></app-main-slider>
 <app-categories-slider></app-categories-slider>
 <div class="container mx-auto">
+    <div class="my-5 w-3/4 search mx-auto">
+        <input type="text" id="search"  [(ngModel)]="searchData"  placeholder="Search By Title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+    </div>
     <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-2">
-        @for(product of productList; track $index){
+        @for(product of productList | filter: searchData; track $index){
             <div class=" rounded ">
                 <div class="px-2 py-4  h-full product ">
                     <div [routerLink]="['/productDetails',product.id]">
@@ -18,7 +21,7 @@
                        
                         <div class="flex justify-between items-center">
                             <p>
-                                {{product.price}} EGP
+                                {{product.price | currency: 'EGP '}}
                             </p>
                             <p>
                                <i class="fas fa-star rating-color"></i> {{product.ratingsQuantity}}
