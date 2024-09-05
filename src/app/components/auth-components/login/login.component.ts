@@ -15,7 +15,7 @@ export class LoginComponent {
   isLoading: boolean = false;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, Validators.required),
-    password: new FormControl(null, [Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{5,6}$/)]),
+    password: new FormControl(null, [Validators.required,Validators.pattern(/^[A-Za-z0-9]{5,10}$/)]),
   })
   constructor(private _AuthService: AuthService, private _Router: Router){
 
