@@ -32,6 +32,11 @@
           </a>
         </li>
         <li>
+          <a routerLink="/wishlist" routerLinkActive="active-link" class="block py-2 px-2 text-gray-900 rounded     dark:text-white   dark:border-gray-700">
+            Wish List
+          </a>
+        </li>
+        <li>
             <a routerLink="/cart" routerLinkActive="active-link" class="block relative py-2 px-2  text-gray-900 rounded     dark:text-white   dark:border-gray-700">
               <i class="fa-solid fa-cart-shopping "></i>
               <span class="absolute top-0 bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">{{cartNumber}}</span>
@@ -53,7 +58,7 @@
      @if (isLogin) {
     <li>
       <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
-        <button type="button" data-dropdown-toggle="language-dropdown-menu" class="inline-flex items-center  font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+        <button type="button" data-dropdown-toggle="language-dropdown-menu" class="inline-flex items-center py-2 px-2  justify-center  text-gray-900  cursor-pointer   ">
           Lang
         </button>
         <!-- Dropdown -->

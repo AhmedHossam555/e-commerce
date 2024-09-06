@@ -15,6 +15,7 @@ import { VerifyEmailComponent } from './components/auth-components/forget/verify
 import { VerifyCodeComponent } from './components/auth-components/forget/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './components/auth-components/forget/reset-password/reset-password.component';
 import { logoutGuard } from './shared/guard/logout.guard';
+import { WishlistComponent } from './components/pages/wishlist/wishlist.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path: 'productDetails/:id',component: ProductDetailsComponent, canActivate:[authGuard], title:'productDetails'},
     {path:'categories', component:CategoriesComponent,canActivate:[authGuard],title:'categories' },
     {path:'checkout', component:CheckOutComponent,canActivate:[authGuard],title:'checkout' },
+    {path:'wishlist', component: WishlistComponent,canActivate:[authGuard], title:'wishlist'},
     {path:'allorders', component:AllOrdersComponent,canActivate:[authGuard],title:'allorders'},
     {path:'vemail', component: VerifyEmailComponent,title:'verify email'},
     {path:'vcode', component: VerifyCodeComponent,title:'verify code'},

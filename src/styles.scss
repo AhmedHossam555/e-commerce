@@ -83,6 +83,9 @@ border-radius: 12px;
       transform: rotate(360deg);
   }
   } 
-.home,.brand,.categories {
+.home,.brand,.categories,.wishlist,.products{
     min-height: 100vh;
+}
+.heart {
+    color: red;
 }
