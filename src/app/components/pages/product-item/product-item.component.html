@@ -1,0 +1,35 @@
+
+<div class=" rounded ">
+    <div class="px-2 py-4  h-full product ">
+        <div [routerLink]="['/productDetails',product.id]">
+            <img [src]="product.imageCover"  class="w-full" alt="">
+            <div class="h-20">
+                <h3 class="text-main">
+                    {{product.title.split(' ').slice(0,5).join(' ')}}
+                </h3>
+                <p class="my-3">
+                    {{product.category.name}}
+                </p>
+            </div>
+           
+            <div class="flex justify-between items-center">
+                <p>
+                    {{product.price}} EGP
+                </p>
+                <p>
+                   <i class="fas fa-star rating-color"></i> {{product.ratingsQuantity}}
+                </p>
+            </div>
+        </div>
+        <div class="text-end">              
+            @if(isAddedToWishList) {
+                <i   class="fa-solid fa-heart heart block text-3xl cursor-pointer " (click)="removeFromWishList(product._id)"></i>
+            }
+            @if(!isAddedToWishList){
+                <i style="color: black"   class="fa-solid fa-heart  block text-3xl cursor-pointer " (click)="addToWishList(product._id)"></i>
+            }
+
+        </div>
+        <button (click)="AddProductCart(product.id)" class="btn bg-main my-2 text-white   cursor-pointer  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full "> <i class="fab fa-plus"></i> Add </button>
+    </div>
+</div>

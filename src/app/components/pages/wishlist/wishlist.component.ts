@@ -15,12 +15,14 @@ import { CartService } from '../../../shared/services/cart.service';
 })
 export class WishlistComponent implements OnInit {
   wishList: Root[]=[]
+
   constructor(private _wishListService: WishlistService, private _toatr: ToastrService,private _CartService:CartService){
 
   }
   ngOnInit(): void {
-    this.getAllWishList()
+    this.getAllWishList();
   }
+ 
   getAllWishList(){
     this._wishListService.getALLWishList().subscribe({
       next: (resp)=>{
@@ -28,6 +30,7 @@ export class WishlistComponent implements OnInit {
       }
     })
   }
+  
   removeWishList(id: string){
     this._wishListService.removeProductFromWishList(id).subscribe({
       next:(resp) =>{

@@ -9,9 +9,9 @@ export class ChangeColorDirective implements OnInit {
   wishListId: string[] = []
 
   constructor(private _ele: ElementRef, private _wish:WishlistService) { }
-  @HostListener('click') changeColor(){
-    this._ele.nativeElement.classList.toggle('heart')
-  }
+  // @HostListener('click') changeColor(){
+  //   this._ele.nativeElement.classList.toggle('heart')
+  // }
   ngOnInit(): void {
     
   }

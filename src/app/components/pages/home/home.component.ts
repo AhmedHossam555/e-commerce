@@ -1,5 +1,5 @@
 import { Data } from './../../../shared/interface/cart';
-import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
 import { MainSliderComponent } from "../main-slider/main-slider.component";
 import { CategoriesSliderComponent } from "../categories-slider/categories-slider.component";
 import { Root } from '../../../shared/interface/product';
@@ -12,25 +12,37 @@ import { FilterPipe } from '../../../shared/pipe/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { WishlistService } from '../../../shared/services/wishlist.service';
 import { ChangeColorDirective } from '../../../shared/directive/change-color.directive';
+import { ProductsComponent } from "../products/products.component";
+import { ProductItemComponent } from "../product-item/product-item.component";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MainSliderComponent, RouterLink, CategoriesSliderComponent,CurrencyPipe, FilterPipe, FormsModule,ChangeColorDirective],
+  imports: [MainSliderComponent, RouterLink, CategoriesSliderComponent, CurrencyPipe, FilterPipe, FormsModule, ChangeColorDirective, ProductsComponent, ProductItemComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   productList:Root[ ] = []
-  searchData:string = ''
-  constructor(private _ProductService: ProductService, private _CartService: CartService, private _toastrService: ToastrService, private _Router: Router,private _wishList: WishlistService){
+  searchData:string = '';
+  wishListId: any[]= []
 
+
+  constructor(private _ProductService: ProductService, private _CartService: CartService, private _toastrService: ToastrService, private _Router: Router,private _wishList: WishlistService){
+  
   }
 
   ngOnInit(): void {
+    this.loadWishList();
     this.getAllProducts();
     this.getAllCartItems();
     localStorage.setItem('currentPage',this._Router.url);
   }
+  loadWishList(){
+    this._wishList.getALLWishListId().subscribe({
+    next:(res)=>{ this.wishListId = res}
+    })
+  }
+ 
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{
       this._CartService.cartItemNumber.next(resp.numOfCartItems)
@@ -45,35 +57,45 @@ export class HomeComponent implements OnInit {
     
     })
   }
-  AddProductCart(productId: string){
+  // AddProductCart(productId: string){
 
-    this._CartService.addProductToCart(productId).subscribe({
-      next: (rep)=>{
-        this._CartService.cartItemNumber.next(rep.numOfCartItems)
-        this._toastrService.success(rep.message,'',{
-          progressBar: true,
-          progressAnimation: 'increasing',
-          easeTime: 100,
-          timeOut: 3000,
-        })
-      }
-    })
-  }
+  //   this._CartService.addProductToCart(productId).subscribe({
+  //     next: (rep)=>{
+  //       this._CartService.cartItemNumber.next(rep.numOfCartItems)
+  //       this._toastrService.success(rep.message,'',{
+  //         progressBar: true,
+  //         progressAnimation: 'increasing',
+  //         easeTime: 100,
+  //         timeOut: 3000,
+  //       })
+  //     }
+  //   })
+  // }
  
-
-  addToWishList(id: string){
-    
-    this._wishList.addProductToWishList(id).subscribe({
-      next:(resp)=>{
-        if(resp.status == 'success'){
-          this._toastrService.success(resp.message);
-          console.log(resp.data)
-        }
-      }
-    })
   
-  }
 
+//   addToWishList(id: string, event:any){
+    
+//     if(event.currentTarget.classList.contains('heart')){
+//       event.currentTarget.classList.remove('heart');
+//       this._wishList.removeProductFromWishList(id).subscribe((resp)=>{
+//         if(resp.status == 'success'){
+//           this._toastrService.success(resp.message);
+//         } 
+//       })
 
+//     }else{
+//       event.currentTarget.classList.add('heart')
+//       this._wishList.addProductToWishList(id).subscribe({
+//         next:(resp)=>{
+//           if(resp.status == 'success'){
+//             this._toastrService.success(resp.message);
+//           }
+//         }
+//       })
+//   }
+// }
+ 
+  
 }
 
