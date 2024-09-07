@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Description
 
-    This is an Angular E-commerce application that allows users to browse products, add products to cart or wishlist, and checkout products. The application fetches product data through an API and uses a token-based authentication system . It also implements the concept of standalone with the application , It is performance highly and improve in seo, including a app.config where users can view and update their personal information.
+This is an Angular E-commerce application that allows users to browse products, add products to cart or wishlist, and checkout products. The application fetches product data through an API and uses a token-based authentication system . It also implements the concept of standalone with the application , It is performance highly and improve in seo, including a app.config where users can view and update their personal information.
 
 ## Features
 
@@ -41,7 +41,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * [ngx-owl-carousel-o](https://www.npmjs.com/package/ngx-owl-carousel-o).
 * [ngx-spinner](https://www.npmjs.com/package/ngx-spinner).
 * [ngx-translate](https://www.npmjs.com/package/@ngx-translate/core?activeTab=readme).
-* [jwt-decode] (https://www.npmjs.com/package/jwt-decode).
+* [jwt-decode](https://www.npmjs.com/package/jwt-decode).
 * [rxjs](https://rxjs.dev/).
 
 
