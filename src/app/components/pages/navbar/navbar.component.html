@@ -33,13 +33,13 @@
         </li>
         <li>
           <a routerLink="/wishlist" routerLinkActive="active-link" class="block py-2 px-2 text-gray-900 rounded     dark:text-white   dark:border-gray-700">
-            Wish List
+            {{"wishlist" | translate}}
           </a>
         </li>
         <li>
             <a routerLink="/cart" routerLinkActive="active-link" class="block relative py-2 px-2  text-gray-900 rounded     dark:text-white   dark:border-gray-700">
               <i class="fa-solid fa-cart-shopping "></i>
-              <span class="absolute top-0 bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">{{cartNumber}}</span>
+              <span class="absolute top-0  bg-yellow-100 text-yellow-800 text-xs font-medium  me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">{{cartNumber}}</span>
 
             </a>
           </li>
