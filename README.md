@@ -35,7 +35,7 @@ This is an Angular E-commerce application that allows users to browse products, 
 
 * [Angular](https://angular.io/).
 * [Typescript](https://www.typescriptlang.org/)
-* [tailwind](https://tailwindcss.com/docs/guides/angular).
+* [Tailwind](https://tailwindcss.com/docs/guides/angular).
 * [Fontawesome](https://fontawesome.com/).
 * [ngx-toastr](https://www.npmjs.com/package/ngx-toastr).
 * [ngx-owl-carousel-o](https://www.npmjs.com/package/ngx-owl-carousel-o).
