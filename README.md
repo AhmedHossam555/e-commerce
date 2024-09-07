@@ -44,6 +44,7 @@ This is an Angular E-commerce application that allows users to browse products, 
 * [jwt-decode](https://www.npmjs.com/package/jwt-decode).
 * [rxjs](https://rxjs.dev/).
 
+Please leave a ⭐ as motivation if you liked the implementation 😄
 
 ## Development server
 
@@ -53,9 +54,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory
 
 ## Running unit tests
 
