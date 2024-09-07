@@ -1,5 +1,5 @@
-<div class="container  mx-auto pb-8 pt-4">
-    <h1 class="text-3xl  text-main">
+<div class="container  md:mx-auto pb-8 pt-4">
+    <h1 class="md:text-3xl font-bold   text-xl p-3   text-main">
         Login Now:
     </h1>
      @if(errMsg){
@@ -8,7 +8,7 @@
         </div>
     } 
     <form  [formGroup]="loginForm" (ngSubmit)="sendData()">
-        <div class="w-8/12 mx-auto my-8">
+        <div class="md:w-8/12 w-full md:mx-auto my-8">
          
             <div class="mb-6">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email:</label>
@@ -39,13 +39,13 @@
             <div class="flex justify-between">
                 <a class="cursor-pointer" routerLink="/vemail">forget your password?</a>
                 <div>
-                    <button [disabled]="!loginForm.valid" type="submit" class="text-white bg-green-600 disabled:bg-green-400 cursor-pointer hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Register
+                    <button [disabled]="!loginForm.valid" type="submit" class="text-white bg-green-600 disabled:bg-green-400 cursor-pointer hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Login
                         @if(isLoading){
                             <i class="fa-solid fa-spinner fa-spin"></i>
                         }
                     </button>
-                    <button type="button" (click)="onReset()" class="text-white ms-2 bg-yellow-400  cursor-pointer hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                        Login
+                    <button type="button" (click)="onReset()" class="text-white ms-2 md:inline-block hidden bg-yellow-400  cursor-pointer hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+                        Reset
                     </button>
                 </div>
              
