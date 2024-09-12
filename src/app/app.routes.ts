@@ -1,37 +1,22 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/pages/home/home.component';
-import { BrandsComponent } from './components/pages/brands/brands.component';
-import { CartsComponent } from './components/pages/carts/carts.component';
-import { ProductsComponent } from './components/pages/products/products.component';
-import { CategoriesComponent } from './components/pages/categories/categories.component';
-import { LoginComponent } from './components/auth-components/login/login.component';
-import { RegisterComponent } from './components/auth-components/register/register.component';
-import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 import { authGuard } from './shared/guard/auth.guard';
-import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
-import { CheckOutComponent } from './components/pages/check-out/check-out.component';
-import { AllOrdersComponent } from './components/pages/all-orders/all-orders.component';
-import { VerifyEmailComponent } from './components/auth-components/forget/verify-email/verify-email.component';
-import { VerifyCodeComponent } from './components/auth-components/forget/verify-code/verify-code.component';
-import { ResetPasswordComponent } from './components/auth-components/forget/reset-password/reset-password.component';
 import { logoutGuard } from './shared/guard/logout.guard';
-import { WishlistComponent } from './components/pages/wishlist/wishlist.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'home',pathMatch:'full'},
-    {path:'home', component: HomeComponent,canActivate:[authGuard], title:'home' },
-    {path:'brands',component: BrandsComponent,canActivate:[authGuard], title:'brands' },
-    {path:'cart', component: CartsComponent,canActivate:[authGuard], title: 'cart'},
-    {path:'products', component: ProductsComponent,canActivate:[authGuard], title:'products'},
-    {path: 'productDetails/:id',component: ProductDetailsComponent, canActivate:[authGuard], title:'productDetails'},
-    {path:'categories', component:CategoriesComponent,canActivate:[authGuard],title:'categories' },
-    {path:'checkout', component:CheckOutComponent,canActivate:[authGuard],title:'checkout' },
-    {path:'wishlist', component: WishlistComponent,canActivate:[authGuard], title:'wishlist'},
-    {path:'allorders', component:AllOrdersComponent,canActivate:[authGuard],title:'allorders'},
-    {path:'vemail', component: VerifyEmailComponent,title:'verify email'},
-    {path:'vcode', component: VerifyCodeComponent,title:'verify code'},
-    {path:'rpassword',component: ResetPasswordComponent,title:'Reset Password'},
-    {path:'login', component: LoginComponent, title:'login', canActivate:[logoutGuard]},
-    {path:'register', component: RegisterComponent, title:'register', canActivate:[logoutGuard]},
-    {path:'**', component:NotfoundComponent}
+    {path:'home', loadComponent:()=>import('../app/components/pages/home/home.component').then((c)=>c.HomeComponent),canActivate:[authGuard], title:'home' },
+    {path:'brands',loadComponent:()=>import('../app/components/pages/brands/brands.component').then((c)=>c.BrandsComponent),canActivate:[authGuard], title:'brands' },
+    {path:'cart', loadComponent:()=>import('../app/components/pages/carts/carts.component').then((c)=>c.CartsComponent),canActivate:[authGuard], title: 'cart'},
+    {path:'products', loadComponent:()=>import('../app/components/pages/products/products.component').then((c)=>c.ProductsComponent),canActivate:[authGuard], title:'products'},
+    {path: 'productDetails/:id',loadComponent:()=>import('../app/components/pages/product-details/product-details.component').then((c)=>c.ProductDetailsComponent), canActivate:[authGuard], title:'productDetails'},
+    {path:'categories', loadComponent:()=>import('../app/components/pages/categories/categories.component').then((c)=>c.CategoriesComponent),canActivate:[authGuard],title:'categories' },
+    {path:'checkout', loadComponent:()=>import('../app/components/pages/check-out/check-out.component').then((c)=>c.CheckOutComponent),canActivate:[authGuard],title:'checkout' },
+    {path:'wishlist',loadComponent:()=>import('../app/components/pages/wishlist/wishlist.component').then((c)=>c.WishlistComponent),canActivate:[authGuard], title:'wishlist'},
+    {path:'allorders', loadComponent:()=>import('../app/components/pages/all-orders/all-orders.component').then((c)=>c.AllOrdersComponent),canActivate:[authGuard],title:'allorders'},
+    {path:'vemail', loadComponent:()=>import('../app/components/auth-components/forget/verify-email/verify-email.component').then((c)=>c.VerifyEmailComponent),title:'verify email'},
+    {path:'vcode', loadComponent:()=>import('../app/components/auth-components/forget/verify-code/verify-code.component').then((c)=>c.VerifyCodeComponent),title:'verify code'},
+    {path:'rpassword',loadComponent:()=>import('../app/components/auth-components/forget/reset-password/reset-password.component').then((c)=>c.ResetPasswordComponent),title:'Reset Password'},
+    {path:'login', loadComponent:()=>import('../app/components/auth-components/login/login.component').then((c)=>c.LoginComponent), title:'login', canActivate:[logoutGuard]},
+    {path:'register', loadComponent:()=>import('../app/components/auth-components/register/register.component').then((c)=>c.RegisterComponent), title:'register', canActivate:[logoutGuard]},
+    {path:'**',loadComponent:()=>import('../app/components/pages/notfound/notfound.component').then((c)=>c.NotfoundComponent),title:'notfound'}
 ];
