@@ -10,6 +10,7 @@ This is an Angular E-commerce application that allows users to browse products, 
 
 
 * User Authentication with JWT token.
+* Using loadComponent fun in routes to implement LazyLoading as a standalone 
 * Using Guard with Routing
 * Using Interceptors for loading and request api
 * Using Pipe with search bar
