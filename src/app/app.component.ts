@@ -5,6 +5,7 @@ import { FooterComponent } from './components/pages/footer/footer.component';
 import { CartService } from './shared/services/cart.service';
 import { isPlatformBrowser } from '@angular/common';
 import { NgxSpinnerComponent } from 'ngx-spinner';
+import { FlowbitService } from './shared/services/flowbit.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,12 +16,13 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
 export class AppComponent  {
   title = 'e-commerce';
   x = inject(PLATFORM_ID);
-  constructor( private _CartService: CartService){
+  constructor( private _CartService: CartService,private flowbiteService: FlowbitService){
   }
   ngOnInit() {
     if(isPlatformBrowser(this.x)){
       this.getAllCartItems();
     }
+    this.flowbiteService.loadFlowbite(()=>{})
   }
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{

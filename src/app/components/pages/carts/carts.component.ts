@@ -3,6 +3,7 @@ import {  Component, OnInit} from '@angular/core';
 import { CartService } from '../../../shared/services/cart.service';
 import { Data, Product2 } from '../../../shared/interface/cart';
 import { Router, RouterLink } from '@angular/router';
+import { FlowbitService } from '../../../shared/services/flowbit.service';
 
 @Component({
   selector: 'app-carts',
@@ -14,10 +15,11 @@ import { Router, RouterLink } from '@angular/router';
 export class CartsComponent implements OnInit{
   productList: Product2[] = [];
   cartItems!: any ; //:Data
-  constructor(private _CartService: CartService, private _Router:Router){}
+  constructor(private _CartService: CartService, private _Router:Router,private flowbiteService:FlowbitService){}
   ngOnInit(): void {
     this.getAllCartItems();
-    localStorage.setItem('currentPage',this._Router.url)
+    localStorage.setItem('currentPage',this._Router.url);
+    this.flowbiteService.loadFlowbite(()=>{})
   }
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{

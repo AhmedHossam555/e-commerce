@@ -33,16 +33,18 @@ export class ProductsComponent implements OnInit{
   loadWishList(){
     this._wishList.getALLWishListId().subscribe({
     next:(res)=>{ this.wishListId = res}
-    })
+    }
+    )
   }
   getAllProducts(){
     this._ProductService.getProducts().subscribe({
       next: (resp)=>{
         this.productList = resp.data;
-      },
-      error: () =>{}
-    })
-  }
+      }
+  })
+    }
+  
+  
   AddProductCart(productId: string){
 
     this._CartService.addProductToCart(productId).subscribe({

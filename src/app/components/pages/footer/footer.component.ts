@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FlowbitService } from '../../../shared/services/flowbit.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
+  constructor(private flowbiteService: FlowbitService) {}
+
+  ngOnInit(): void {
+    this.flowbiteService.loadFlowbite(flowbite => {
+
+    });
+  }
 
 }

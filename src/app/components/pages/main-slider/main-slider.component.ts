@@ -12,8 +12,8 @@ export class MainSliderComponent {
   customOptions: OwlOptions = {
     rtl: true,
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,

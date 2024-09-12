@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { loadingInterceptor } from './shared/interceptor/loading.interceptor';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { errorInterceptor } from './shared/interceptor/error/error.interceptor';
 function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http, '../assets/i18n/','.json');
 }
@@ -26,7 +27,7 @@ export const appConfig: ApplicationConfig = {
       }
     })
   ),
-    provideHttpClient(withFetch(), withInterceptors([headersInterceptor,loadingInterceptor]))
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor,loadingInterceptor,errorInterceptor]))
     
   ]
 };

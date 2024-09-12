@@ -14,6 +14,7 @@ import { WishlistService } from '../../../shared/services/wishlist.service';
 import { ChangeColorDirective } from '../../../shared/directive/change-color.directive';
 import { ProductsComponent } from "../products/products.component";
 import { ProductItemComponent } from "../product-item/product-item.component";
+import { FlowbitService } from '../../../shared/services/flowbit.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   wishListId: any[]= []
 
 
-  constructor(private _ProductService: ProductService, private _CartService: CartService, private _toastrService: ToastrService, private _Router: Router,private _wishList: WishlistService){
+  constructor(private _ProductService: ProductService, private _CartService: CartService, private _toastrService: ToastrService, private _Router: Router,private _wishList: WishlistService,private _flowbiteService: FlowbitService){
   
   }
 
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.getAllProducts();
     this.getAllCartItems();
     localStorage.setItem('currentPage',this._Router.url);
+    this._flowbiteService.loadFlowbite(()=>{})
   }
   loadWishList(){
     this._wishList.getALLWishListId().subscribe({
@@ -52,8 +54,7 @@ export class HomeComponent implements OnInit {
     this._ProductService.getProducts().subscribe({
       next: (resp)=>{
         this.productList = resp.data;
-      },
-      error: () =>{},
+      }
     
     })
   }
