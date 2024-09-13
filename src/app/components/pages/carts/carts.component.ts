@@ -25,7 +25,7 @@ export class CartsComponent implements OnInit{
     this._CartService.getLoggedUserCart().subscribe((resp)=>{
       this.cartItems = resp.data;
       this.productList = resp.data.products;
-      this._CartService.cartItemNumber.next(resp.numOfCartItems)
+      this._CartService.cartItemNumber.set(resp.numOfCartItems)
     })
   }
   updateProduct(id: string, count: number){
@@ -36,7 +36,7 @@ export class CartsComponent implements OnInit{
       next: (resp)=>{
         this.cartItems = resp.data;
         this.productList =resp.data.products;
-        this._CartService.cartItemNumber.next(resp.numOfCartItems)
+        this._CartService.cartItemNumber.set(resp.numOfCartItems)
       }
     })
   }
@@ -44,12 +44,12 @@ export class CartsComponent implements OnInit{
     this._CartService.removeSpecificCartItem(id).subscribe((resp)=>{
       this.cartItems = resp.data;
       this.productList =resp.data.products; 
-      this._CartService.cartItemNumber.next(resp.numOfCartItems)
+      this._CartService.cartItemNumber.set(resp.numOfCartItems)
      })
   }
   clearCart(){
     this._CartService.clearUserCart().subscribe((resp)=>{
-      this._CartService.cartItemNumber.next(resp.numOfCartItems)
+      this._CartService.cartItemNumber.set(resp.numOfCartItems)
     })
   }
 }

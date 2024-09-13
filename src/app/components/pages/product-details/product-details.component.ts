@@ -41,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
     nav: true
   }
   id!: string;
-  productDetails!:Details;
+  productDetails!:any; //:Details
 
   constructor(private _ActivateRoute: ActivatedRoute, private _ProductService: ProductService, private _CartService:CartService,private _toastrService: ToastrService){
   }
@@ -60,7 +60,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this._CartService.addProductToCart(this.id).subscribe({
       next: (rep)=>{
-        this._CartService.cartItemNumber.next(rep.numOfCartItems)
+        this._CartService.cartItemNumber.set(rep.numOfCartItems)
         this._toastrService.success(rep.message,'',{
           progressBar: true,
           progressAnimation: 'increasing',

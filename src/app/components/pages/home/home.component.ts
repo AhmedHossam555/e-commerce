@@ -1,5 +1,5 @@
 import { Data } from './../../../shared/interface/cart';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, signal, ViewChild, viewChild, WritableSignal } from '@angular/core';
 import { MainSliderComponent } from "../main-slider/main-slider.component";
 import { CategoriesSliderComponent } from "../categories-slider/categories-slider.component";
 import { Root } from '../../../shared/interface/product';
@@ -23,9 +23,9 @@ import { FlowbitService } from '../../../shared/services/flowbit.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  productList:Root[ ] = []
-  searchData:string = '';
-  wishListId: any[]= []
+  productList:WritableSignal<Root[]> = signal([])
+  searchData:WritableSignal<string> = signal('');
+  wishListId:WritableSignal<any[]> = signal([])
 
 
   constructor(private _ProductService: ProductService, private _CartService: CartService, private _toastrService: ToastrService, private _Router: Router,private _wishList: WishlistService,private _flowbiteService: FlowbitService){
@@ -41,19 +41,19 @@ export class HomeComponent implements OnInit {
   }
   loadWishList(){
     this._wishList.getALLWishListId().subscribe({
-    next:(res)=>{ this.wishListId = res}
+    next:(res)=>{ this.wishListId.set(res)}
     })
   }
  
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{
-      this._CartService.cartItemNumber.next(resp.numOfCartItems)
+      this._CartService.cartItemNumber.set(resp.numOfCartItems)
     })
   }
   getAllProducts(){
     this._ProductService.getProducts().subscribe({
       next: (resp)=>{
-        this.productList = resp.data;
+        this.productList.set(resp.data);
       }
     
     })

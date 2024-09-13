@@ -20,9 +20,7 @@ export class LoginComponent {
   constructor(private _AuthService: AuthService, private _Router: Router){
 
   }
-  onReset(){
-    this.loginForm.reset();
-  }
+
   sendData(){
     this.isLoading = true;
     if(this.loginForm.valid){

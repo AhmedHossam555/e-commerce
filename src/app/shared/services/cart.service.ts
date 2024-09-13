@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit} from '@angular/core';
+import { Injectable, OnInit, signal, WritableSignal} from '@angular/core';
 import { Enviroment } from '../../Base/enviroment';
-import { BehaviorSubject, Observable} from 'rxjs';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService implements OnInit {
 
-  cartItemNumber = new BehaviorSubject(0)
+  cartItemNumber:WritableSignal<number> = signal(0)
   constructor(private _http: HttpClient) {
 
    }
    ngOnInit(): void{
     this.getLoggedUserCart().subscribe({
       next: (resp)=>{
-        this.cartItemNumber.next(resp.numOfCartItems)
+        this.cartItemNumber.set(resp.numOfCartItems)
       }
     })
     

@@ -46,7 +46,7 @@ export class WishlistComponent implements OnInit {
 
       this._CartService.addProductToCart(productId).subscribe({
         next: (rep)=>{
-          this._CartService.cartItemNumber.next(rep.numOfCartItems)
+          this._CartService.cartItemNumber.set(rep.numOfCartItems)
           this._toatr.success(rep.message,'',{
             progressBar: true,
             progressAnimation: 'increasing',

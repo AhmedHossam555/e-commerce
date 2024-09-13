@@ -11,7 +11,7 @@
         <div class="md:w-8/12 w-full md:mx-auto my-8">
          
             <div class="mb-6">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email:</label>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
                 <input type="email" id="email" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
                 @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
                     <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
@@ -22,7 +22,7 @@
                 }
             </div>
             <div class="mb-6">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">password:</label>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password:</label>
                 <input type="password" id="password" formControlName="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
                 @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
                     <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
@@ -39,14 +39,12 @@
             <div class="flex justify-between">
                 <a class="cursor-pointer" routerLink="/vemail">forget your password?</a>
                 <div>
-                    <button [disabled]="!loginForm.valid" type="submit" class="text-white bg-green-600 disabled:bg-green-400 cursor-pointer hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Login
+                    <button [disabled]="!loginForm.valid"  type="submit" class="text-white bg-main btn  disabled:bg-green-400 cursor-pointer  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Login
                         @if(isLoading){
                             <i class="fa-solid fa-spinner fa-spin"></i>
                         }
                     </button>
-                    <button type="button" (click)="onReset()" class="text-white ms-2 md:inline-block hidden bg-yellow-400  cursor-pointer hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                        Reset
-                    </button>
+                  
                 </div>
              
             </div>

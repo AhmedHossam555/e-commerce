@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { BrandsService } from '../../../shared/services/brands.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { BrandsService } from '../../../shared/services/brands.service';
   styleUrl: './brands.component.scss'
 })
 export class BrandsComponent implements OnInit{
-  brandsList:any[] = []
+  brandsList:WritableSignal<any[]> = signal([])
   constructor(private _brands: BrandsService){
 
   }
@@ -18,7 +18,7 @@ export class BrandsComponent implements OnInit{
   }
   getAllBrands(){
      this._brands.getAllBrands().subscribe((resp)=>{
-      this.brandsList = resp.data;
+      this.brandsList.set(resp.data);
      })
   }
 }

@@ -1,4 +1,4 @@
-import {  afterNextRender, inject, Injectable, PLATFORM_ID } from '@angular/core';
+import {  afterNextRender, inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { Login, Register, ResetPassword } from '../interface/auth';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -29,10 +29,10 @@ export class AuthService {
   login(formData: Login): Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/signin`, formData);
   }
-  userData: BehaviorSubject<any> = new BehaviorSubject(null);
+  userData:WritableSignal<any> =  signal(null)
   userInformation(){
      let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
-     this.userData.next(decoded)
+     this.userData.set(decoded)
   }
   verifyEmail(emailData: any):Observable<any>{
     return this._http.post(`${Enviroment.baseUrl}/api/v1/auth/forgotPasswords`,emailData)

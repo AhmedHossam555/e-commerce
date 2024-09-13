@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../../shared/services/cart.service';
 import { PaymentService } from '../../../shared/services/payment.service';
@@ -11,7 +11,8 @@ import { PaymentService } from '../../../shared/services/payment.service';
   styleUrl: './check-out.component.scss'
 })
 export class CheckOutComponent implements OnInit {
-  id!: string;
+  //id!: string;
+  id: WritableSignal<string> = signal('');
   constructor(private _CartService: CartService, private _checkoutSrvice: PaymentService){
 
   }
@@ -21,7 +22,7 @@ export class CheckOutComponent implements OnInit {
   getCartId(){
     this._CartService.getLoggedUserCart().subscribe({
       next: (resp)=>{
-        this.id = resp.data._id
+        this.id.set(resp.data._id)
       }
     })
   }
@@ -31,7 +32,7 @@ export class CheckOutComponent implements OnInit {
      city: new FormControl(null)
   })
   sendData(){
-    this._checkoutSrvice.getCheckOut(this.id, this.cartForm.value).subscribe({
+    this._checkoutSrvice.getCheckOut(this.id(), this.cartForm.value).subscribe({
       next: (resp)=>{
         window.location.href = resp.session.url;
       }
