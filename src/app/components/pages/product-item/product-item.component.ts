@@ -14,7 +14,9 @@ import { WishlistService } from '../../../shared/services/wishlist.service';
 })
 export class ProductItemComponent {
   @Input() isAddedToWishList!:boolean;
+  
   @Input() product!: Root;
+
   constructor(private _CartService: CartService, private _toastrService: ToastrService, private _wishList: WishlistService){}
   AddProductCart(productId: string){
     this._CartService.addProductToCart(productId).subscribe({

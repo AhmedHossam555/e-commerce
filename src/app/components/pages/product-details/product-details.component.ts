@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
-import { Details } from '../../../shared/interface/details';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from '../../../shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
-import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-product-details',

@@ -1,5 +1,5 @@
 import { CartService } from './../../../shared/services/cart.service';
-import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Inject, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Root } from '../../../shared/interface/product';
 import { Router, RouterLink } from '@angular/router';
@@ -16,8 +16,8 @@ import { WishlistService } from '../../../shared/services/wishlist.service';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit{
-  productList:Root[ ] = []
-  wishListId: any[]= []
+  productList:WritableSignal<Root[]> = signal([]);
+  wishListId:WritableSignal<any[]>= signal([])
   constructor(private _ProductService: ProductService, private _CartService:CartService, private _toastrService: ToastrService,private _Router: Router,private _wishList: WishlistService){
   }
   x = inject(PLATFORM_ID)
@@ -32,14 +32,14 @@ export class ProductsComponent implements OnInit{
   }
   loadWishList(){
     this._wishList.getALLWishListId().subscribe({
-    next:(res)=>{ this.wishListId = res}
+    next:(res)=>{ this.wishListId.set(res)}
     }
     )
   }
   getAllProducts(){
     this._ProductService.getProducts().subscribe({
       next: (resp)=>{
-        this.productList = resp.data;
+        this.productList.set(resp.data);
       }
   })
     }

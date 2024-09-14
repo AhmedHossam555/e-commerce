@@ -4,18 +4,21 @@ import { CartService } from '../../../shared/services/cart.service';
 import { Data, Product2 } from '../../../shared/interface/cart';
 import { Router, RouterLink } from '@angular/router';
 import { FlowbitService } from '../../../shared/services/flowbit.service';
+import { CurrencyPipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-carts',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './carts.component.html',
   styleUrl: './carts.component.scss'
 })
 export class CartsComponent implements OnInit{
   productList: Product2[] = [];
   cartItems!: any ; //:Data
-  constructor(private _CartService: CartService, private _Router:Router,private flowbiteService:FlowbitService){}
+  cart!:any;
+  constructor(private _CartService: CartService, private _Router:Router,private flowbiteService:FlowbitService,private _toatr: ToastrService){}
   ngOnInit(): void {
     this.getAllCartItems();
     localStorage.setItem('currentPage',this._Router.url);
@@ -24,6 +27,7 @@ export class CartsComponent implements OnInit{
   getAllCartItems(){
     this._CartService.getLoggedUserCart().subscribe((resp)=>{
       this.cartItems = resp.data;
+      this.cart = resp;
       this.productList = resp.data.products;
       this._CartService.cartItemNumber.set(resp.numOfCartItems)
     })
@@ -49,7 +53,11 @@ export class CartsComponent implements OnInit{
   }
   clearCart(){
     this._CartService.clearUserCart().subscribe((resp)=>{
-      this._CartService.cartItemNumber.set(resp.numOfCartItems)
+      if(resp.message == "success"){
+        this.getAllCartItems();
+        this._toatr.success('Clear Your Cart Success ')
+        this._CartService.cartItemNumber.set(resp.numOfCartItems)
+      }
     })
   }
 }

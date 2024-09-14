@@ -1,4 +1,4 @@
-<div class="container p-4">
+<!-- <div class="container p-4">
     <h1 class="my-4 ms-2 text-3xl md:text-start text-center  text-main font-medium">
         Shopping Cart
     </h1>
@@ -86,4 +86,83 @@
 </div>
 <div class="text-center my-1">
     <button type="button" class="border-green-500 text-xl border hover:bg-green-500 hover:text-white  text-gray-900  font-medium rounded-lg  px-5 py-2.5  text-center" (click)="clearCart()">Clear Your Cart</button>
+</div> -->
+
+
+
+
+
+<div class="p-12 back py-5 my-12 w-10/12 mx-auto rounded-xl">
+    <div class="flex justify-between items-center mb-6">
+        <h2  class="text-3xl font-bold">
+            Cart Shop
+        </h2>
+        <button routerLink="/checkout" type="button"   class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200  font-bold rounded-lg text-lg px-5 py-2.5">
+            check out
+        </button>
+    </div>
+    <div class="flex justify-between items-center text-xl">
+        <p class="font-bold">
+            total price: <span class="text-main font-bold">
+                {{cartItems?.totalCartPrice}}EGP
+            </span>
+        </p>
+        <p class="font-bold"> 
+            total number of items: <span class="text-main font-bold">
+                {{cart?.numOfCartItems}}
+            </span>
+        </p>
+    </div>
+    <div class="border-b my-4 border-slate-300">
+        @for(prod of productList; track $index){
+       
+            <div class="flex items-center md:flex-row flex-col    p-3 ">
+                <div class="bg-white w-2/12  ">
+                    <img class="w-full" [src]="prod.product.imageCover" alt="">
+                </div>
+                <div class="flex md:justify-between  justify-center text-center md:flex-row flex-col w-9/12 items-center p-5 ">
+                    <div>
+                        <h5 class="font-extrabold md:text-lg text-sm">
+                            {{prod.product.title}}
+                        </h5>
+                        <h6 class="my-1 font-bold md:text-lg text-sm text-main">
+                            {{prod.price | currency:'EGP '}}
+                        </h6>
+                        <button (click)="removeItem(prod.product._id)" class="text-red-600 py-1 md:text-lg text-sm"><i class="fa-solid fa-trash"></i>Remove</button>
+                    </div>
+                    <div class="flex items-center">
+                        <button (click)="updateProduct(prod.product._id, prod.count-1)" class="inline-flex  cursor-pointer items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-600 bg-white border border-green-400  rounded-sm focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 " type="button">
+                            <span class="sr-only">Quantity button</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                            </svg>
+                        </button>
+                        <div class="text-center ms-3">
+                            {{prod.count}}
+                        </div>
+                        <button (click)="updateProduct(prod.product._id, prod.count+1)" class="inline-flex  cursor-pointer items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-600 bg-white border border-green-400  rounded-sm focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  " type="button">
+                            <span class="sr-only">Quantity button</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        }@empty {
+            <h2  class="text-2xl mb-6 font-bold">
+                Cart  Is Empty
+            </h2>
+            
+        }
+    </div>
+
+    <div class="text-center my-2">
+        <button (click)="clearCart()" type="button" class="border-green-500 text-xl border hover:bg-green-500 hover:text-white  text-gray-900  font-medium rounded-lg  px-5 py-2.5  text-center" >Clear Your Cart</button>
+    </div> 
+    
+ 
+
+
 </div>

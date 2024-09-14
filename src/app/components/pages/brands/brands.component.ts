@@ -9,6 +9,8 @@ import { BrandsService } from '../../../shared/services/brands.service';
   styleUrl: './brands.component.scss'
 })
 export class BrandsComponent implements OnInit{
+  isPop:boolean = false;
+  imageSrc:WritableSignal<string> = signal('');
   brandsList:WritableSignal<any[]> = signal([])
   constructor(private _brands: BrandsService){
 
@@ -20,5 +22,12 @@ export class BrandsComponent implements OnInit{
      this._brands.getAllBrands().subscribe((resp)=>{
       this.brandsList.set(resp.data);
      })
+  }
+  onClick(image:string){
+    this.isPop = true;
+     this.imageSrc.set(image)
+  }
+  onClose(){
+    this.isPop = false;
   }
 }

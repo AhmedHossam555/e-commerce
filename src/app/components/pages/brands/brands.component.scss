@@ -1,0 +1,49 @@
+.close {
+    width: 40px;
+    height: 36px;
+    background-color: white;
+    box-shadow: 0.2px 0.5px #ddd;
+    position: relative;
+    border-radius: 5px;
+    padding: 2px;
+    span {
+        width: 30px;
+        height: 4px;
+        background-color: #0aad0a;
+        position: absolute;
+        left: 5px;
+        transition: 0.3s ease-in;
+    }
+    .top {
+        top: 8px;
+    }
+    .middle {
+        top: 16px;
+    }
+    .bottom {
+        top: 24px;
+    }
+    &:hover {
+        cursor: pointer;
+        .top {
+            top: 16px;
+            rotate: 45deg;
+        }
+        .bottom {
+            top: 16px;
+            rotate: -45deg;
+        }
+        .middle {
+            opacity: 0;
+        }
+    }
+    
+    
+}
+.pos {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 55;
+    
+}
