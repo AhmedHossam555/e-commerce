@@ -4,5 +4,7 @@
     "brands": "Brands",
     "categories": "Categories",
     "signout": "Sign Out",
-    "wishlist":"Wish List"
+    "wishlist":"Wish List",
+    "lang":"Lang",
+    "allorders": "All Orders"
 }

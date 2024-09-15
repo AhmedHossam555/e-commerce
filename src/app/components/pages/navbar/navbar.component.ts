@@ -16,6 +16,7 @@ import { MyTranslateService } from '../../../shared/services/my-translate.servic
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
+  isPop: boolean = false;
   isLogin: boolean = false;
   cartNumber:any;
   x = inject(PLATFORM_ID);
@@ -42,5 +43,12 @@ export class NavbarComponent implements OnInit {
   change(lang:string){
     this._myTranslate.changelanguage(lang);
   }
+  onClose(){
+    this.isPop = false;
+  }
+  onOpen(){
+    this.isPop = true;
+  }
+
 
 }

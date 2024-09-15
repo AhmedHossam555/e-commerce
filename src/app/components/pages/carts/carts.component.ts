@@ -22,7 +22,8 @@ export class CartsComponent implements OnInit{
   
   
  
-  constructor(private _CartService: CartService, private _Router:Router,private flowbiteService:FlowbitService,private _toatr: ToastrService){}
+  constructor(private _CartService: CartService, private _Router:Router,private flowbiteService:FlowbitService,private _toatr: ToastrService){
+  }
   ngOnInit(): void {
     this.getAllCartItems();
     localStorage.setItem('currentPage',this._Router.url);
