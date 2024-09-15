@@ -1,1 +1,65 @@
-<p>all-orders works!</p>
+
+
+<div class="orders">
+    <div class="p-12 back py-5 my-12 w-10/12 mx-auto rounded-xl">
+        @for (order of orders; track $index) {
+            <div class="mb-6 border-b border-slate-400">
+                <h2  class="md:text-3xl text-xl font-bold py-6">
+                    Your Order Id : {{order.id}}
+                </h2>
+                @for(order of order.cartItems;track $index){
+                    <div class="p-4 flex items-center gap-8 border-b  border-slate-200  py-4" >
+                        <img class="w-1/5 rounded-lg" [src]="order.product.imageCover" alt="">
+                        <div class="w-4/5 ">
+                            <h3 class="font-bold text-xl">
+                                {{order.product.title}}
+                            </h3>
+                            <p class="font-bold py-2">
+                               {{order.product.brand.name}}
+                            </p>
+                            <div class="flex justify-between md:mt-11">
+                                    <span class="px-4 py-3 border border-green-300 font-bold rounded-lg inline-block">
+                                     x {{order.count}}
+                                    </span>
+                                <span class="font-bold">
+                                    {{order.price}}EGP
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+        
+                }
+                <div class="border-b border-slate-200 p-2" >
+                    <p class="py-1">paidAt : {{order.paidAt}}</p>
+                    <p>createdAt: {{order.createdAt}}</p> 
+                </div>
+                <div class="p-2">
+                    <p class="py-1">paymentMethodType:{{order.paymentMethodType}}</p>
+                    <p class="py-2">isPaid: {{order.isPaid}}</p>
+                    <p class="flex justify-between">
+                        <span>
+                            Subtotal:
+                        </span>
+                        <span>
+                            {{order.taxPrice}}EGP(ex. tax)
+                        </span>
+                    </p>
+                    <p class="flex justify-between py-2">
+                        <span>
+                            Shipping Price:
+                        </span>
+                        <span >
+                            Flat Rate EGP
+                        </span>
+                    </p>
+                    <p class="py-2 font-extrabold">totalOrderPrice: {{order.totalOrderPrice}}EGP</p>
+              </div>
+               
+            </div>
+        }@empty {
+          <h2 class="font-bold text-3xl ">
+            Order Is Empty
+          </h2>
+        }
+    </div>
+</div>

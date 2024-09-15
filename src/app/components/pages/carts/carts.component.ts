@@ -1,11 +1,12 @@
 
-import {  Component, OnInit} from '@angular/core';
+import {  Component, OnInit, signal, WritableSignal} from '@angular/core';
 import { CartService } from '../../../shared/services/cart.service';
 import { Data, Product2 } from '../../../shared/interface/cart';
 import { Router, RouterLink } from '@angular/router';
 import { FlowbitService } from '../../../shared/services/flowbit.service';
 import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { AllOrderService } from '../../../shared/services/all-order.service';
 
 @Component({
   selector: 'app-carts',
@@ -18,6 +19,9 @@ export class CartsComponent implements OnInit{
   productList: Product2[] = [];
   cartItems!: any ; //:Data
   cart!:any;
+  
+  
+ 
   constructor(private _CartService: CartService, private _Router:Router,private flowbiteService:FlowbitService,private _toatr: ToastrService){}
   ngOnInit(): void {
     this.getAllCartItems();
@@ -29,7 +33,8 @@ export class CartsComponent implements OnInit{
       this.cartItems = resp.data;
       this.cart = resp;
       this.productList = resp.data.products;
-      this._CartService.cartItemNumber.set(resp.numOfCartItems)
+      this._CartService.cartItemNumber.set(resp.numOfCartItems);
+
     })
   }
   updateProduct(id: string, count: number){
