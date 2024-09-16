@@ -43,7 +43,7 @@
         </li>
         <li>
             <a routerLink="/cart" routerLinkActive="active-link" class="block relative py-2 px-2  text-gray-900 rounded     dark:text-white   dark:border-gray-700">
-              Cart
+              {{"cart" | translate}}
             </a>
           </li>
        }
@@ -97,8 +97,12 @@
             </div>
             </div>
          <ul class="w-full relative list-none ">
-          <li (click)="change('en')" class="border-b border-slate-200 p-6 cursor-pointer mr-8">English(En)</li>
-          <li (click)="change('ar')" class="border-b border-slate-200 p-6 cursor-pointer mr-8">Arabic(Ar)</li>
+          <li (click)="change('en')" class="border-b border-slate-200 p-6 cursor-pointer mr-8">
+            {{"english" | translate}}
+          </li>
+          <li (click)="change('ar')" class="border-b border-slate-200 p-6 cursor-pointer mr-8">
+            {{"arabic" | translate}}
+          </li>
          </ul>
         </div>
     }

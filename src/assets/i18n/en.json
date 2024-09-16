@@ -6,5 +6,8 @@
     "signout": "Sign Out",
     "wishlist":"Wish List",
     "lang":"Lang",
-    "allorders": "All Orders"
+    "allorders": "All Orders",
+    "cart": "Cart",
+    "english": "English(En)",
+    "arabic": "Arabic(Ar)"
 }
